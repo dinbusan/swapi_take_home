@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTable } from "react-table";
 import { Link } from "react-router-dom";
 
 function Table({ data }) {
+    
   const columns = React.useMemo(
     () => [
       { Header: "Name", accessor: "name" },
@@ -20,7 +21,10 @@ function Table({ data }) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
 
+    
+
   return (
+    <>
     <table {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
@@ -56,6 +60,7 @@ function Table({ data }) {
         })}
       </tbody>
     </table>
+</>
   );
 }
 
