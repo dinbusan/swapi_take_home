@@ -1,5 +1,6 @@
 import React from "react";
 import { useTable } from "react-table";
+import { Link } from "react-router-dom";
 
 function Table({ data }) {
   const columns = React.useMemo(
@@ -36,7 +37,19 @@ function Table({ data }) {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => (
-                <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                <td {...cell.getCellProps()}>
+                  {cell.column.id === "name" ? (
+                    <Link
+                      to={`/detail/${
+                        row.original.url.split("/").slice(-2)[0]
+                      }`}
+                    >
+                      {cell.render("Cell")}
+                    </Link>
+                  ) : (
+                    cell.render("Cell")
+                  )}
+                </td>
               ))}
             </tr>
           );
