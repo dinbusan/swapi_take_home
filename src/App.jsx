@@ -8,12 +8,24 @@ const App = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
+     const [page, setPage] = useState(1);
+
+     const handleNext = () => {
+       setPage(page + 1);
+     };
+
+     const handlePrev = () => {
+       setPage(page - 1);
+     };
+
+
   useEffect(() => {
+    
     const fetchData = async () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://swapi.dev/api/people/?page=1`
+          `https://swapi.dev/api/people/?page=${page}`
         );
         const jsonData = await response.json();
         setData(jsonData.results);
@@ -25,7 +37,7 @@ const App = () => {
     };
 
     fetchData();
-  }, []);
+  }, [page]);
 
   return (
     <Router>
@@ -36,12 +48,22 @@ const App = () => {
         ) : (
           <>
             <Routes>
-              <Route exact path="/" element={<Table data={data} />}></Route>
+              <Route
+                exact
+                path="/"
+                element={
+                  <Table
+                    data={data}
+                    handleNext={handleNext}
+                    handlePrev={handlePrev}
+                  />
+                }
+              />
               <Route path="/details/:id" element={<Details data={data} />} />
             </Routes>
+            
           </>
         )}
-        ;
       </div>
     </Router>
   );

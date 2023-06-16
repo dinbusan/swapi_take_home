@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Table = ({ data }) => {
-   const [page, setPage] = useState(1);
-
-  const handleNext = () => {
-    setPage(page + 1);
-  };
-
-  const handlePrev = () => {
-    setPage(page - 1);
-  };
-
+const Table = ({ data, handleNext, handlePrev }) => {
   return (
     <>
       <table>
@@ -34,10 +24,10 @@ const Table = ({ data }) => {
           ))}
         </tbody>
       </table>
-      <button onClick={handlePrev} disabled={page === 1}>
+      <button onClick={handlePrev} >
         Prev Page
       </button>
-      <button onClick={handleNext} disabled={page === 9}>
+      <button onClick={handleNext}>
         Next Page
       </button>
     </>

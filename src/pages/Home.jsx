@@ -20,9 +20,9 @@ function MyComponent() {
         setLoading(false);
       }
     };
-
     fetchData();
   }, [page]);
+
 
   const handleNext = () => {
     setPage(page + 1);
