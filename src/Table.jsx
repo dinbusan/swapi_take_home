@@ -1,67 +1,47 @@
 import React, { useState } from "react";
-import { useTable } from "react-table";
 import { Link } from "react-router-dom";
 
-function Table({ data }) {
-    
-  const columns = React.useMemo(
-    () => [
-      { Header: "Name", accessor: "name" },
-      { Header: "Height", accessor: "height" },
-      { Header: "Mass", accessor: "mass" },
-      { Header: "Hair Color", accessor: "hair_color" },
-      { Header: "Skin Color", accessor: "skin_color" },
-      { Header: "Eye Color", accessor: "eye_color" },
-    ],
-    []
-  );
+const Table = ({ data }) => {
+   const [page, setPage] = useState(1);
 
-  const tableInstance = useTable({ columns, data });
+  const handleNext = () => {
+    setPage(page + 1);
+  };
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    tableInstance;
-
-    
+  const handlePrev = () => {
+    setPage(page - 1);
+  };
 
   return (
     <>
-    <table {...getTableProps()}>
-      <thead>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-            ))}
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Birth Year</th>
+            <th>Species</th>
           </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => (
-                <td {...cell.getCellProps()}>
-                  {cell.column.id === "name" ? (
-                    <Link
-                      to={`/detail/${
-                        row.original.url.split("/").slice(-2)[0]
-                      }`}
-                    >
-                      {cell.render("Cell")}
-                    </Link>
-                  ) : (
-                    cell.render("Cell")
-                  )}
-                </td>
-              ))}
+        </thead>
+        <tbody>
+          {data.map((item, index) => (
+            <tr key={index}>
+              <td>
+                <Link to={`/details/${index}`}>{item.name}</Link>
+              </td>
+              <td>{item.birth_year}</td>
+              <td>{item.species}</td>
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
-</>
+          ))}
+        </tbody>
+      </table>
+      <button onClick={handlePrev} disabled={page === 1}>
+        Prev Page
+      </button>
+      <button onClick={handleNext} disabled={page === 9}>
+        Next Page
+      </button>
+    </>
   );
-}
+};
 
 export default Table;
