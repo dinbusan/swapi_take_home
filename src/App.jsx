@@ -28,7 +28,23 @@ const App = () => {
           `https://swapi.dev/api/people/?page=${page}`
         );
         const jsonData = await response.json();
-        setData(jsonData.results);
+
+        const films = await Promise.all(
+          jsonData.results.map(async (character) => {
+            const filmPromises = character.films.map(async(filmUrl) => {
+              const filmResponse = await fetch(filmUrl);
+              const filmData = await filmResponse.json();
+              return filmData.title;
+            });
+            const filmTitles = await Promise.all(filmPromises);
+            return {
+              ...character, 
+              films: filmTitles,
+            }
+          })
+        )
+
+        setData(films);
       } catch (error) {
         console.error("There was an error:", error);
       } finally {
@@ -38,6 +54,8 @@ const App = () => {
 
     fetchData();
   }, [page]);
+
+  console.log(data);
 
   return (
     <Router>

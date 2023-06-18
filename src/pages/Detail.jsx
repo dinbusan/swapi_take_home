@@ -20,6 +20,7 @@ const Details = ({ data }) => {
       <p>Height: {character.height}</p>
       <p>Mass: {character.Mass}</p>
       <p>Skin Color: {character.skin_color}</p>
+      <p>Films: {character.films.join(", ")}</p>
     </div>
   );
 };
