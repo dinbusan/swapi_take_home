@@ -45,10 +45,16 @@ const App = () => {
             })
             const speciesName = await Promise.all(speciesPromises);
 
+              const homeworldResponse = await fetch(character.homeworld);
+              const homeworldData = await homeworldResponse.json();
+              const homeworldName = homeworldData.name;
+            
+
             return {
               ...character, 
               films: filmTitles,
               species: speciesName,
+              homeworld: homeworldName,
             }
           })
         )

@@ -21,6 +21,7 @@ const Details = ({ data }) => {
       <p>Mass: {character.Mass}</p>
       <p>Skin Color: {character.skin_color}</p>
       <p>Films: {character.films.join(", ")}</p>
+      <p>Homeworld: {character.homeworld}</p>
     </div>
   );
 };
