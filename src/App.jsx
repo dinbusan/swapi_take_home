@@ -29,7 +29,7 @@ const App = () => {
         );
         const jsonData = await response.json();
 
-        const films = await Promise.all(
+        const characterData = await Promise.all(
           jsonData.results.map(async (character) => {
             const filmPromises = character.films.map(async(filmUrl) => {
               const filmResponse = await fetch(filmUrl);
@@ -37,14 +37,23 @@ const App = () => {
               return filmData.title;
             });
             const filmTitles = await Promise.all(filmPromises);
+
+            const speciesPromises = character.species.map(async(speciesURL)=> {
+              const speciesResponse = await fetch(speciesURL);
+              const speciesData = await speciesResponse.json();
+              return speciesData.name;
+            })
+            const speciesName = await Promise.all(speciesPromises);
+
             return {
               ...character, 
               films: filmTitles,
+              species: speciesName,
             }
           })
         )
 
-        setData(films);
+        setData(characterData);
       } catch (error) {
         console.error("There was an error:", error);
       } finally {
