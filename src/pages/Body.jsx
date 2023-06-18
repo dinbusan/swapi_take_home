@@ -33,7 +33,6 @@ const Body = () => {
     fetchData();
   }, [page]);
 
-  console.log(data);
 
   return (
     <>

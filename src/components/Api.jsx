@@ -2,6 +2,7 @@ export const fetchCharacterData = async (page) => {
   const response = await fetch(`https://swapi.dev/api/people/?page=${page}`);
   const jsonData = await response.json();
 
+
   const characterData = await Promise.all(
     jsonData.results.map(async (character) => {
       const filmPromises = character.films.map(async (filmUrl) => {
