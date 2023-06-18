@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Table from "../Table";
+import Table from "../components/Table";
 import Details from "./Detail";
 import { fetchCharacterData } from "../components/Api";
 
@@ -38,7 +38,10 @@ const Body = () => {
   return (
     <>
       {loading ? (
+        <>
         <p>Loading...</p>
+        <p>May take up to 1 minute...</p>
+        </>
       ) : (
         <Routes>
           <Route
