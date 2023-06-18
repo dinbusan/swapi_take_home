@@ -1,16 +1,30 @@
 import React from "react";
 import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
+import Body from "./pages/Body";
 
 const App = () => {
+  const { isAuthenticated } = useAuth0();
+
   return (
-   
-      <div>
-        <h1 className="text-4xl text-red-400">Star Wars Characters</h1>
-        <LoginButton />
+    <div>
+      <div className="flex justify-between">
+        {isAuthenticated ? (
+          <h1 className="text-4xl text-red-400 mx-auto">
+            SWAPI API React Assignment
+          </h1>
+        ) : (
+          <h1 className="text-4xl text-red-400 mx-auto my-40">
+            SWAPI API React Assignment
+          </h1>
+        )}{" "}
         <LogoutButton />
       </div>
-  
+      <LoginButton />
+
+      {isAuthenticated ? <Body /> : null}
+    </div>
   );
 };
 

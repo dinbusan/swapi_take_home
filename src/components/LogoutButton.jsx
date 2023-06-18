@@ -9,14 +9,15 @@ const LogoutButton = () => {
     return (
       <>
         <button
-          className="btn btn-primary
-                    mx-5 my-5 px-4 logoutBtn"
+          className="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow"
           onClick={() => logout({ returnTo: window.location.origin })}
         >
-          Log Out
+          <div className="absolute inset-0 w-3 bg-red-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+          <span className="relative text-black group-hover:text-white">
+            Log Out
+          </span>
         </button>
         <br />
-        <Body />
       </>
     );
   }

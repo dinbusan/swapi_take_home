@@ -23,14 +23,20 @@ const Table = ({ data, handleNext, handlePrev }) => {
               </thead>
               <tbody>
                 {data.map((item, index) => (
-                  <tr className="bg-gray-100 border-b" key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      <Link to={`/details/${index}`}>{item.name}</Link>
-                    </td>
-                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <tr
+                    className="bg-gray-100 border-b text-gray-900"
+                    key={index}
+                  >
+                    <Link to={`/details/${index}`}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium hover:text-amber-500 hover:scale-110">
+                        {item.name}
+                      </td>
+                    </Link>
+
+                    <td className="text-sm font-light px-6 py-4 whitespace-nowrap">
                       {item.birth_year}
                     </td>
-                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    <td className="text-sm font-light px-6 py-4 whitespace-nowrap">
                       {item.species}
                     </td>
                   </tr>
@@ -55,7 +61,6 @@ const Table = ({ data, handleNext, handlePrev }) => {
           onClick={handleNext}
         >
           <div className="absolute inset-0 w-3 bg-amber-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-
           <span className="relative text-black group-hover:text-white">
             Next Page
           </span>
