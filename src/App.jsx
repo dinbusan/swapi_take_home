@@ -9,9 +9,9 @@ const App = () => {
 
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex font-mono justify-between m-5">
         {isAuthenticated ? (
-          <h1 className="text-4xl text-red-400 mx-auto">
+          <h1 className=" text-4xl text-red-400 mx-auto">
             SWAPI API React Assignment
           </h1>
         ) : (
