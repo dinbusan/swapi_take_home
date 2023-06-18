@@ -3,6 +3,7 @@ import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import Body from "./pages/Body";
+import { Link } from "react-router-dom";
 
 const App = () => {
   const { isAuthenticated } = useAuth0();
@@ -11,9 +12,11 @@ const App = () => {
     <div>
       <div className="flex font-mono justify-between m-5">
         {isAuthenticated ? (
-          <h1 className=" text-4xl text-red-400 mx-auto">
-            SWAPI API React Assignment
-          </h1>
+          <Link to="/">
+            <h1 className=" text-4xl text-red-400 mx-auto">
+              SWAPI API React Assignment
+            </h1>
+          </Link>
         ) : (
           <h1 className="text-4xl text-red-400 mx-auto my-40">
             SWAPI API React Assignment

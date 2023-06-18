@@ -39,8 +39,7 @@ const Body = () => {
       {loading ? (
         <>
           <div className="animate-bounce my-40 flex font-mono text-3xl justify-center">
-            <p>Loading...</p>
-            <p>May take up to 1 minute...</p>
+            <p>Loading... May take up to 1 minute...</p>
           </div>
         </>
       ) : (
