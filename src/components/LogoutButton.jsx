@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react';
-import Home from '../pages/Home';
+import Home from '../pages/Body';
 import Body from '../Body'
 
 const LogoutButton = () => {
