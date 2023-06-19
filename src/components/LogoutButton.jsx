@@ -1,6 +1,5 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Body from "../pages/Body";
 
 const LogoutButton = () => {
   const { logout, isAuthenticated } = useAuth0();
